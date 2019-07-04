@@ -310,3 +310,47 @@ footer .info a {
     }
 }
 
+@media screen and (max-width: 800px) {
+    .banner .banner-info p {
+        width: auto;
+    }
+
+    .types .container, .form .container {
+        display: block;
+
+    }
+
+    .form .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .form .container form {
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    header,
+    .container .banner-info,
+    footer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .banner .banner-info p,
+    .description p,
+    .contact-text p,
+    .form form .line{
+        width: auto;
+    }
+
+    .banner .lines {
+        bottom: -122px;
+    }
+
+    footer{
+        height: auto;
+    }
+ }
