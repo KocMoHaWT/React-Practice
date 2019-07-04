@@ -1,0 +1,291 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html,
+body{
+    height: 100%;
+}
+
+
+label{
+    margin-bottom: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+     text-decoration: none;
+ }
+
+img{
+    margin: 0;
+}
+
+p{
+    margin-bottom: 0;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    list-style: none;
+}
+
+a:focus,
+a:active,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus{
+    outline: none;
+}
+
+button{
+    cursor: pointer;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+.container{
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.banner {
+    background: url("../images/Street Corner Ventures Home Page.jpg") no-repeat;
+    background-size: cover;
+    padding: 30px 0;
+    height: 100vh;
+    position: relative;
+}
+.banner .banner-info {
+    padding-top: 102px;
+    color: #FFF;
+}
+.banner .banner-info h1 {
+    font: 800 40px/53px 'Montserrat', sans-serif;
+    letter-spacing: -0.5px;
+
+}
+
+.banner .banner-info p {
+    width: 581px;
+    padding-top: 11px;
+    font: 400 16px/30px 'Montserrat', sans-serif;
+    letter-spacing: -0.5px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header nav ul {
+    display: flex;
+    align-items: center;
+}
+header nav ul a {
+    color:#FFF;
+    font: 800 16px/62px 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+header nav ul li {
+    padding-left: 15px;
+}
+
+header nav ul li:first-child {
+    padding-left: 0;
+}
+
+.banner .banner-info a {
+    display: block;
+    margin-top: 45px;
+    background: #F4B73D;
+    width: 220px;
+    height: 62px;
+    border-radius: 31px;
+    text-align: center;
+    color:#141311;
+    font: 800 16px/62px 'Montserrat', sans-serif;
+}
+
+.banner .oval {
+    box-sizing: border-box;
+    height: 17px;
+    width: 17px;
+    border: 2px solid #EEB540;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.banner .line {
+    box-sizing: border-box;
+    height: 131px;
+    width: 1px;
+    border: 2px solid #EEB540;
+    margin: 0 auto;
+}
+.banner .lines {
+   position: absolute;
+    bottom: -75px;
+    left: 50%;
+    z-index: 5;
+    margin-left: -8.5px;
+}
+
+.types{
+    padding-top: 75px;
+}
+
+.types .container {
+    display: flex;
+    box-shadow: 0 20px 41px 0 rgba(15,15,15,0.2);
+    justify-content: space-between;
+    background: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+.types--item {
+    padding: 45px;
+    position: relative;
+}
+
+.types--item .number {
+    font: 800 20px 'Montserrat', sans-serif;
+    color: #F4B73D;
+    position: absolute;
+    top: 50px;
+    left: 15px;
+}
+
+.types--item  .title{
+    font: 800 24px/36px 'Montserrat', sans-serif;
+    letter-spacing: -0.43px;
+
+}
+
+.types--item .line {
+    width: 159px;
+    height: 2px;
+    border: 2px solid #EEB540;
+    margin: 15px 0 20px;
+}
+
+.types--item .text {
+    font: 400 16px/30px 'Montserrat', sans-serif;
+    letter-spacing: -0.5px;
+    color:#242424;
+}
+
+.types--item a {
+    display: block;
+    margin: 15px 0 20px;
+    color:#F4B73D;
+    font: 800 16px 'Montserrat', sans-serif;
+}
+
+.description {
+    background: url("../images/breno-assis-517356-unsplash.jpg") no-repeat;
+    background-size: cover;
+    padding: 150px 0;
+    margin-top: -85px;
+}
+
+.description .container h1 {
+    font: 800 40px/50px 'Montserrat', sans-serif;
+    color: #FFF;
+
+}
+
+.description p {
+    padding-top: 28px;
+    width: 566px;
+    font: 400 16px/30px 'Montserrat', sans-serif;
+    color: #FFF;
+    letter-spacing: -0.5px;
+}
+
+.form .container{
+    display: flex;
+    justify-content: space-between;
+    padding: 80px 150px 0;
+}
+
+.contact-text {
+    margin-top: 130px;
+}
+
+.contact-text h1 {
+    font: 800 60px/70px 'Montserrat', sans-serif;
+    color: #141311;
+    letter-spacing: -0.6px;
+}
+
+.contact-text p {
+    width: 392px;
+    margin-top: 19px;
+    font: 400 16px/30px 'Montserrat', sans-serif;
+    color: #141311;
+    letter-spacing: -0.5px;
+}
+
+.contact-text a {
+    margin-top: 25px;
+    display: block;
+    color: #F4B73D;
+    font: 800 16px/19px 'Montserrat', sans-serif;
+    letter-spacing: -0.6px;
+}
+
+.form form h1 {
+    text-align: center;
+    font: 800 30px/45px 'Montserrat', sans-serif;
+    color: #141311;
+    letter-spacing: -0.5px;
+}
+
+.form form input {
+    border: none;
+    font: 400 16px/19px 'Montserrat', sans-serif;
+    color: #B7B7B7;
+    letter-spacing: -0.5px;
+    margin-top: 47px;
+}
+
+.form form .line {
+    box-sizing: border-box;
+    margin-top: 14px;
+    width: 402px;
+    border: 1px solid #979797;
+}
+
+footer {
+    height: 110px;
+    background-color: #3C3C3C;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
