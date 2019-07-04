@@ -286,6 +286,27 @@ footer {
 footer {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+}
+
+footer .info {
+    font: 400 16px/30px 'Montserrat', sans-serif;
+    color: #FFF;
+    letter-spacing: -0.5px;
+}
+
+footer .info a {
+    color: #FFF;
+
+}
+
+@media screen and (max-width: 1150px) {
+    .form .container{
+    padding: 80px 100px 0;
+    }
+
+    .banner {
+    height: auto;
+    }
 }
 
