@@ -1,5 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
-import Banner from './components/Banner'
+import App from './components/App'
+import './css/reset.css'
+import './css/style.css'
 
-render(<Banner/>, document.getElementById('root'));
+render(<App/>, document.getElementById('root'));
