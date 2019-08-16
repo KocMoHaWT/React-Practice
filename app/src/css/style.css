@@ -300,6 +300,11 @@ footer .info a {
 
 }
 
+.changeForm {
+    display: flex;
+    flex-direction: column;
+}
+
 @media screen and (max-width: 1150px) {
     .form .container{
     padding: 80px 100px 0;

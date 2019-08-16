@@ -29,53 +29,56 @@ class App extends React.Component {
                 '                                contact you',
             form__p: 'Complete the simple form below and one of our experts will reach out to you shortly\n' +
                 '                                to answer your questions.',
-            biography: [
-                {
+            biography: {
+                0 : {
                     date: 2015,
                     info: 'Graduated from school'
                 },
-                {
+                1 : {
                     date: 2015,
                     info: 'Successfully pass tests to Aviation University on '
                 },
-                {
+                2 : {
                     date: 2018,
                     info: 'Pass the tests to school Ш++'
                 },
-                {
+                3 : {
                     date: 2019,
                     info: 'Passed the final exam in p2p course'
                 },
-                {
+                4 : {
                     date: 2019,
                     info: "Have entered in web course"
                 },
-                {
+                5 : {
                     date: 2019,
                     info: 'Got my bachelor degree in Organisation of work and management aviation facilities'
                 },
-                {
+                6 : {
                     date: 2019,
                     info: 'Have entered Onix Internship'
                 }
-            ],
+            },
             sorted: true,
 
         };
     }
 
     selectionSort = () => {
-        let array = this.state.biography;
+        const bio = this.state.biography;
+        let newObj = {};
+        let counter = 0;
+        let array = Object.keys(bio);
         let length = array.length;
         for (let i = 0; i < length - 1; i++) {
             let firstObj = i;
             for (let j = i + 1; j < length; j++) {
                 if (this.state.sorted) {
-                    if (array[j].date > array[firstObj].date) {
+                    if (bio[array[j]].date > bio[firstObj].date) {
                         firstObj = j;
                     }
                 } else {
-                    if (array[j].date < array[firstObj].date) {
+                    if (bio[array[j]].date < bio[firstObj].date) {
                         firstObj = j;
                     }
                 }
@@ -83,45 +86,66 @@ class App extends React.Component {
             let t = array[firstObj];
             array[firstObj] = array[i];
             array[i] = t;
+            newObj = array.map((key) => bio[key]);
         }
         this.setState({
-            biography: array,
+            biography: newObj,
             sorted: !this.state.sorted
         });
     }
 
     jsSort = () => {
         let sortedArr;
+        let newObj = {};
+        const bio = this.state.biography;
+        const keys = Object.keys(bio);
         if (this.state.sorted) {
-            sortedArr = this.state.biography.sort((a, b) => b.date - a.date);
+            sortedArr = keys.sort((a, b) => bio[b].date - bio[a].date);
         } else {
-            sortedArr = this.state.biography.sort((a, b) => a.date - b.date);
+            sortedArr = keys.sort((a, b) => bio[a].date - bio[b].date);
         }
+        newObj = sortedArr.map((key) => bio[key]);
         this.setState({
-            biography: sortedArr,
+            biography: newObj,
             sorted: !this.state.sorted
         });
     };
 
     addToList = () => {
         const defaultObj = {date: 2019, info: 'default'};
-        let newArrray = this.state.biography;
-        newArrray.push(defaultObj);
-        this.setState({biography: newArrray})
+        let bio = this.state.biography;
+        let length = Object.keys(bio).length;
+        bio[length] = defaultObj;
+        this.setState({biography: bio})
     };
 
     deleteLast = () => {
-        let newArrray = this.state.biography;
-        newArrray.pop();
-        this.setState({biography: newArrray})
+        let bio = this.state.biography;
+        let length = Object.keys(bio).length;
+        delete bio[length - 1];
+        this.setState({biography: bio})
     }
 
+    changeObj = () => {
+        const key = document.getElementById('key').value;
+        const field = document.getElementById('field').value;
+        const value = document.getElementById('value').value;
+        const bio = this.state.biography;
+        let bioObj = bio[key];
+        // console.log(bioObj);
+        let obj1 = {};
+        obj1[field] = value;
+        bio[key] = {...bioObj, ...obj1};
+        this.setState({biography: bio})
+    }
 
 
 
 createList(){
     let count = 0;
-    return this.state.biography.map((elem) => <li key={count++}>{elem.date} : {elem.info}</li>)
+    const bio = this.state.biography;
+    const keys  = Object.keys(bio);
+    return keys.map((key) => <li key={count++}>{bio[key].date} : {bio[key].info}</li>)
 }
 
 renderList()
@@ -140,6 +164,20 @@ renderList()
                 <ListButton text={'Own Sort'} action={this.selectionSort}/>
                 <ListButton text={'Add New'} action={this.addToList}/>
                 <ListButton text={'Delete last'} action={this.deleteLast}/>
+            </div>
+        )
+    }
+
+    renderChangeForm() {
+        return (
+            <div className="changeForm">
+                <label htmlFor="obj">Pick obj with key(1,2...)</label>
+                <input type="text" name="obj" placeholder={''} id={'key'} required />
+                <label htmlFor="field">Pick which field to change?(date or info)</label>
+                <input type="text" name="field" id={'field'} required />
+                <label htmlFor="value">Write how to change</label>
+                <input type="text" name="value" id={'value'} required />
+                <ListButton text={'change object'} action={this.changeObj} />
             </div>
         )
     }
@@ -237,6 +275,7 @@ render()
                     {/*</form>*/}
                     {this.renderList()}
                     {this.renderListButtons()}
+                    {this. renderChangeForm()}
                 </div>
             </div>
 
