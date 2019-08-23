@@ -1,7 +1,7 @@
 import React from "react";
 import {ReactComponent as Logo} from "../images/logo-streetcorner.svg";
 import {ReactComponent as Arrow} from "../images/Group 11.svg";
-import ListButton from '../components/ListButton'
+import Button from './Button'
 
 // import logo from '../images/logo-streetcorner.svg';
 // function App () {
@@ -29,124 +29,113 @@ class App extends React.Component {
                 '                                contact you',
             form__p: 'Complete the simple form below and one of our experts will reach out to you shortly\n' +
                 '                                to answer your questions.',
-            biography: {
-                0 : {
-                    date: 2015,
-                    info: 'Graduated from school'
-                },
-                1 : {
-                    date: 2015,
-                    info: 'Successfully pass tests to Aviation University on '
-                },
-                2 : {
-                    date: 2018,
-                    info: 'Pass the tests to school Ш++'
-                },
-                3 : {
-                    date: 2019,
-                    info: 'Passed the final exam in p2p course'
-                },
-                4 : {
-                    date: 2019,
-                    info: "Have entered in web course"
-                },
-                5 : {
-                    date: 2019,
-                    info: 'Got my bachelor degree in Organisation of work and management aviation facilities'
-                },
-                6 : {
-                    date: 2019,
-                    info: 'Have entered Onix Internship'
-                }
-            },
+            biography: [],
             sorted: true,
 
         };
     }
 
+    componentDidMount() {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(json => {
+
+                this.setState({
+                    biography: json
+                })
+            })
+    }
+
     selectionSort = () => {
         const bio = this.state.biography;
-        let newObj = {};
-        let counter = 0;
-        let array = Object.keys(bio);
-        let length = array.length;
+        let length = bio.length;
         for (let i = 0; i < length - 1; i++) {
             let firstObj = i;
             for (let j = i + 1; j < length; j++) {
                 if (this.state.sorted) {
-                    if (bio[array[j]].date > bio[firstObj].date) {
+                    if (bio[j].id > bio[firstObj].id) {
                         firstObj = j;
                     }
                 } else {
-                    if (bio[array[j]].date < bio[firstObj].date) {
+                    if (bio[j].id < bio[firstObj].id) {
                         firstObj = j;
                     }
                 }
             }
-            let t = array[firstObj];
-            array[firstObj] = array[i];
-            array[i] = t;
-            newObj = array.map((key) => bio[key]);
+            let element = bio[firstObj];
+            bio[firstObj] = bio[i];
+            bio[i] = element;
+            // newObj = array.map((key) => bio[key]);
         }
         this.setState({
-            biography: newObj,
+            biography: bio,
             sorted: !this.state.sorted
         });
     }
 
     jsSort = () => {
         let sortedArr;
-        let newObj = {};
         const bio = this.state.biography;
-        const keys = Object.keys(bio);
         if (this.state.sorted) {
-            sortedArr = keys.sort((a, b) => bio[b].date - bio[a].date);
+            sortedArr = bio.sort((a, b) => b.id - a.id);
         } else {
-            sortedArr = keys.sort((a, b) => bio[a].date - bio[b].date);
+            sortedArr = bio.sort((a, b) => a.id - b.id);
         }
-        newObj = sortedArr.map((key) => bio[key]);
         this.setState({
-            biography: newObj,
+            biography: sortedArr,
             sorted: !this.state.sorted
         });
     };
 
     addToList = () => {
-        const defaultObj = {date: 2019, info: 'default'};
-        let bio = this.state.biography;
-        let length = Object.keys(bio).length;
-        bio[length] = defaultObj;
-        this.setState({biography: bio})
+        const name = document.getElementById('name').value;
+        const city = document.getElementById('city').value;
+        fetch('https://jsonplaceholder.typicode.com/users',{
+            method: 'POST',
+            body: {name: name, address: {city: city}}
+        })
+            .then(response => response.json())
+            .then(json => {
+                let bio = this.state.biography;
+                if(bio.length < json.id) {
+                   json.id  = ++bio.length;
+                }
+                bio.push({id: json.id, name: name, address:{city: city}});
+                console.log(bio);
+
+                this.setState({
+                    biography: bio
+                })
+            });
     };
 
     deleteLast = () => {
         let bio = this.state.biography;
-        let length = Object.keys(bio).length;
-        delete bio[length - 1];
+        bio.pop();
         this.setState({biography: bio})
     }
 
     changeObj = () => {
-        const key = document.getElementById('key').value;
+        let place = document.getElementById('place').value;
         const field = document.getElementById('field').value;
         const value = document.getElementById('value').value;
         const bio = this.state.biography;
-        let bioObj = bio[key];
-        // console.log(bioObj);
-        let obj1 = {};
-        obj1[field] = value;
-        bio[key] = {...bioObj, ...obj1};
+        if(place > 0 && place < bio.length) {
+            place--;
+        }
+        if(field === 'name') {
+            bio[place][field] = value;
+        }
+        if(field === 'city') {
+            bio[place].address[field] = value;
+        }
         this.setState({biography: bio})
     }
 
-
-
-createList(){
-    let count = 0;
-    const bio = this.state.biography;
-    const keys  = Object.keys(bio);
-    return keys.map((key) => <li key={count++}>{bio[key].date} : {bio[key].info}</li>)
-}
+    createList(){
+        const bio = this.state.biography;
+        return bio.map(obj => <li key={obj.id}>{obj.id}. Name : {obj.name}, Living place : {obj.address.city}</li>)
+    }
 
 renderList()
 {
@@ -159,25 +148,34 @@ renderList()
 
     renderListButtons(){
         return (
-            <div>
-                <ListButton text={'Js Sort'} action={this.jsSort}/>
-                <ListButton text={'Own Sort'} action={this.selectionSort}/>
-                <ListButton text={'Add New'} action={this.addToList}/>
-                <ListButton text={'Delete last'} action={this.deleteLast}/>
+            <div className='button-container'>
+                <Button text={'Js Sort'} action={this.jsSort}/>
+                <Button text={'Own Sort'} action={this.selectionSort}/>
+                <Button text={'Delete last'} action={this.deleteLast}/>
             </div>
         )
     }
-
+    renderAddInput() {
+        return(
+            <div className="changeForm">
+                <label htmlFor="name">Name someone who you want to add</label>
+                <input type="text" name={'name'} id={'name'}/>
+                <label htmlFor={'city'}>Where is this person living</label>
+                <input type="text" name={'city'} id={'city'}/>
+                <Button text={'Add New'} action={this.addToList}/>
+            </div>
+        )
+    }
     renderChangeForm() {
         return (
             <div className="changeForm">
-                <label htmlFor="obj">Pick obj with key(1,2...)</label>
-                <input type="text" name="obj" placeholder={''} id={'key'} required />
-                <label htmlFor="field">Pick which field to change?(date or info)</label>
+                <label htmlFor="place">Pick someone id(1,2...)</label>
+                <input type="text" name="place" placeholder={''} id={'place'} required />
+                <label htmlFor="field">Pick which field to change?(name or city)</label>
                 <input type="text" name="field" id={'field'} required />
                 <label htmlFor="value">Write how to change</label>
                 <input type="text" name="value" id={'value'} required />
-                <ListButton text={'change object'} action={this.changeObj} />
+                <Button text={'change object'} action={this.changeObj} />
             </div>
         )
     }
@@ -213,7 +211,7 @@ render()
             </div>
 
             <div className="types" id="types">
-                <div className="container">t
+                <div className="container">
                     <div className="types--item">
                         <div className="number">1</div>
                         <div className="title">{this.state.types__tittle}
@@ -276,6 +274,7 @@ render()
                     {this.renderList()}
                     {this.renderListButtons()}
                     {this. renderChangeForm()}
+                    {this.renderAddInput()}
                 </div>
             </div>
 

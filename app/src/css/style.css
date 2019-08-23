@@ -248,6 +248,11 @@ header nav ul li:first-child {
     letter-spacing: -0.5px;
 }
 
+.button-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .contact-text a {
     margin-top: 25px;
     display: block;
@@ -303,6 +308,7 @@ footer .info a {
 .changeForm {
     display: flex;
     flex-direction: column;
+    margin-left: 5px;
 }
 
 @media screen and (max-width: 1150px) {
