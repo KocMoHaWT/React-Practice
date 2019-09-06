@@ -115,6 +115,16 @@ header nav ul li:first-child {
     padding-left: 0;
 }
 
+.hidden {
+    display: none;
+}
+.loadImage {
+    position: absolute;
+    top: 200px;
+    left: 200px;
+    width: 200px;
+    height: 140px;
+}
 .banner .banner-info a {
     display: block;
     margin-top: 45px;
@@ -181,6 +191,10 @@ header nav ul li:first-child {
     font: 800 24px/36px 'Montserrat', sans-serif;
     letter-spacing: -0.43px;
 
+}
+
+.picked  {
+    text-decoration: underline;
 }
 
 .types--item .line {
@@ -365,3 +379,5 @@ footer .info a {
         height: auto;
     }
  }
+
+
