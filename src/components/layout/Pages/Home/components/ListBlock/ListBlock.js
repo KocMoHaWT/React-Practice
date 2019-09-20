@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import Button from "./Button";
-import loading from "../images/loading.jpg";
+import {ListBlockView} from "./ListBlockView";
 
 class ListBlock extends Component {
     constructor(props) {
@@ -13,12 +12,13 @@ class ListBlock extends Component {
             loading: true
         }
     }
+
     showImage = () => {
         this.setState({loading: false})
     }
 
     alertImage = () => {
-        setTimeout(this.showImage,2000)
+        setTimeout(this.showImage, 2000)
     }
 
     handleError = () => {
@@ -97,7 +97,6 @@ class ListBlock extends Component {
                     json.id = ++bio.length;
                 }
                 bio.push({id: json.id, name: name, address: {city: city}});
-                console.log(bio);
 
                 this.setState({
                     biography: bio
@@ -153,7 +152,7 @@ class ListBlock extends Component {
             this.setState({itemInFocus: e.target})
             e.target.classList.add('picked');
         }
-     }
+    }
 
     keyDown = e => {
         const list = document.getElementById('list');
@@ -201,7 +200,6 @@ class ListBlock extends Component {
         }
     }
 
-
     createList() {
         const bio = this.state.biography;
         return bio.map(obj => <li key={obj.id}
@@ -213,60 +211,19 @@ class ListBlock extends Component {
         </li>)
     }
 
-    renderList() {
-        return (
-            <ul onClick={this.onClick} id={'list'}>
-                {this.createList()}
-            </ul>
-        )
-    }
-
-    renderListButtons() {
-        return (
-            <div className='button-container'>
-                <Button text={'Js Sort'} action={this.jsSort}/>
-                <Button text={'Own Sort'} action={this.selectionSort}/>
-                <Button text={'Delete last'} action={this.deleteLast}/>
-            </div>
-        )
-    }
-
-    renderAddInput() {
-        return (
-            <div className="changeForm">
-                <label htmlFor="name">Name someone who you want to add</label>
-                <input type="text" name={'name'} id={'name'}/>
-                <label htmlFor={'city'}>Where is this person living</label>
-                <input type="text" name={'city'} id={'city'}/>
-                <Button text={'Add New'} action={this.addToList}/>
-            </div>
-        )
-    }
-
-    renderChangeForm() {
-        return (
-            <div className="changeForm">
-                <label htmlFor="place">Pick someone id(1,2...)</label>
-                <input type="text" name="place" placeholder={''} id={'place'} required/>
-                <label htmlFor="field">Pick which field to change?(name or city)</label>
-                <input type="text" name="field" id={'field'} required/>
-                <label htmlFor="value">Write how to change</label>
-                <input type="text" name="value" id={'value'} required/>
-                <Button text={'change object'} action={this.changeObj}/>
-            </div>
-        )
-    }
     render() {
         return (
             <>
-                <img src={loading} alt="load"
-                     onLoad={this.alertImage}
-                     className={this.state.loading ?  'loadImage': 'loadImage hidden'}
-                />
-                {this.renderList()}
-                {this.renderListButtons()}
-                {this.renderChangeForm()}
-                {this.renderAddInput()}
+                <ListBlockView
+                    onClick={this.onClick}
+                    changeObj={this.changeObj}
+                    deleteLast={this.deleteLast}
+                    addToList={this.addToList}
+                    jsSort={this.jsSort}
+                    selectionSort={this.selectionSort}
+                >
+                    {this.createList()}
+                </ListBlockView>
             </>
         );
     }

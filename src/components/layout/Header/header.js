@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ReactComponent as Logo} from "../../images/logo-streetcorner.svg";
+import {ReactComponent as Logo} from "../../../asserts/images/logo-streetcorner.svg";
 
 class Header extends Component {
     render() {

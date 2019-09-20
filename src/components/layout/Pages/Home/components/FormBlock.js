@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ReactComponent as Arrow} from "../images/Group 11.svg";
+import {ReactComponent as Arrow} from "../../../../../asserts/images/Group 11.svg";
 
 class FormBlock extends Component {
     render() {
