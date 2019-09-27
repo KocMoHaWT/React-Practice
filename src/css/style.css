@@ -92,10 +92,18 @@ body {
 }
 
 header {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: absolute;
+    z-index: 2;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
+
+
 
 header nav ul {
     display: flex;
@@ -125,8 +133,8 @@ header nav ul li:first-child {
     width: 200px;
     height: 140px;
 }
-.banner .banner-info a {
-    display: block;
+ .button {
+    border: none;
     margin-top: 45px;
     background: #F4B73D;
     width: 220px;
@@ -136,6 +144,11 @@ header nav ul li:first-child {
     color:#141311;
     font: 800 16px/62px 'Montserrat', sans-serif;
 }
+
+ .types--item .button {
+     background: none;
+     color: #F4B73D;
+ }
 
 .banner .oval {
     box-sizing: border-box;
@@ -210,8 +223,7 @@ header nav ul li:first-child {
     color:#242424;
 }
 
-.types--item a {
-    display: block;
+.types--item button {
     margin: 15px 0 20px;
     color:#F4B73D;
     font: 800 16px 'Montserrat', sans-serif;
@@ -324,6 +336,8 @@ footer .info a {
     flex-direction: column;
     margin-left: 5px;
 }
+
+
 
 @media screen and (max-width: 1150px) {
     .form .container{

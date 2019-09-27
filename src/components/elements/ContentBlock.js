@@ -1,18 +1,26 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class ContentBlock extends Component {
+const ContentBlock = ({
+  className, children
+}) => {
+  return (
+    <div className={className}>
+      <div className="container">
+        {children}
+      </div>
+    </div>
+  );
+};
 
-    render() {
-        return (
-            <div className={this.props.className} id={this.props.id}>
-                <div className="container">
-                    {this.props.heading && <h1>{this.props.heading}</h1>}
-                    {this.props.paragraph && <p>{this.props.paragraph}</p>}
-                    {this.props.children}
-                </div>
-            </div>
-        );
-    }
-}
+ContentBlock.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.any
+};
+
+ContentBlock.defaultProps = {
+  className: PropTypes.string,
+  children: PropTypes.any
+};
 
 export default ContentBlock;
