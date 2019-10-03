@@ -46,8 +46,9 @@ class Home extends Component {
   }
 
   handleError = () => {
+    // eslint-disable-next-line no-alert
     alert('some error');
-  }
+  };
 
   getApi = () => {
     fetch(process.env.REACT_APP_API_USERS)
@@ -58,7 +59,7 @@ class Home extends Component {
         });
       })
       .catch(() => this.handleError);
-  }
+  };
 
 
   selectionSort = () => {
@@ -83,7 +84,7 @@ class Home extends Component {
       biography, // baka
       sorted: !sorted
     });
-  }
+  };
 
   jsSort = () => {
     let sortedArr;
@@ -125,7 +126,7 @@ class Home extends Component {
     const { biography } = this.state;
     biography.pop();
     this.setState({ biography });
-  }
+  };
 
   changeObj = () => {
     let place = document.getElementById('place').value;
@@ -142,18 +143,18 @@ class Home extends Component {
       biography[place].address[field] = value;
     }
     this.setState({ biography });
-  }
+  };
 
   dragStart = (e) => {
     this.dragged = e.currentTarget;
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/html', this.dragged);
-  }
+  };
 
   dragOver = (e) => {
     e.preventDefault();
     e.target.parentNode.insertBefore(this.dragged, e.target);
-  }
+  };
 
   onClick = (e) => {
     const { itemInFocus } = this.state;
@@ -168,7 +169,7 @@ class Home extends Component {
       this.setState({ itemInFocus: e.target });
       e.target.classList.add('picked');
     }
-  }
+  };
 
   keyDown = (e) => {
     const list = document.getElementById('list');
@@ -212,16 +213,16 @@ class Home extends Component {
       });
       arrayOfNodes[element].classList.add('picked');
     }
-  }
+  };
 
 
   showImage = () => {
     this.setState({ loading: false });
-  }
+  };
 
   alertImage = () => {
     setTimeout(this.showImage, 2000);
-  }
+  };
 
   createList() {
     const { biography } = this.state;

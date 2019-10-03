@@ -14,13 +14,8 @@ const ContentBlock = ({
 };
 
 ContentBlock.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.any
-};
-
-ContentBlock.defaultProps = {
-  className: PropTypes.string,
-  children: PropTypes.any
+  className: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default ContentBlock;
