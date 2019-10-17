@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ReactComponent as Arrow } from '../../../../../asserts/images/Group 11.svg';
+import { ReactComponent as Arrow } from '../../../../asserts/images/Group 11.svg';
 
 class Item extends Component {
   render() {

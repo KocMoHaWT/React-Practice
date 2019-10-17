@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.5",
     "history": "^4.10.1",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
@@ -22,8 +25,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "node_modules/.bin/eslint . --max-warnings=0",
-      "pre-push": "node_modules/.bin/eslint . --max-warnings=0"
+      "pre-commit": "npx eslint . --max-warnings=0",
+      "pre-push": "npx eslint . --max-warnings=0"
     }
   },
   "browserslist": {

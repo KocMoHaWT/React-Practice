@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../../../../elements/Button';
+import Button from '../../../elements/Button';
+
 
 const ListBlockView = ({
   jsSort, selectionSort, deleteLast, addToList, changeObj, children
 }) => {
   return (
     <>
-      <ul id="list">
-        {children}
-      </ul>
+      {children}
       <div className="button-container">
         <Button text="Js Sort" action={jsSort} />
         <Button text="Own Sort" action={selectionSort} />
@@ -46,21 +45,13 @@ const ListBlockView = ({
 };
 
 ListBlockView.propTypes = {
-  jsSort: PropTypes.func,
-  selectionSort: PropTypes.func,
-  deleteLast: PropTypes.func,
-  addToList: PropTypes.func,
-  changeObj: PropTypes.func,
-  children: PropTypes.node
-};
-
-ListBlockView.defaultProps = {
-  jsSort: PropTypes.func,
-  selectionSort: PropTypes.func,
-  deleteLast: PropTypes.func,
-  addToList: PropTypes.func,
-  changeObj: PropTypes.func,
-  children: PropTypes.node
+  jsSort: PropTypes.func.isRequired,
+  selectionSort: PropTypes.func.isRequired,
+  deleteLast: PropTypes.func.isRequired,
+  addToList: PropTypes.func.isRequired,
+  changeObj: PropTypes.func.isRequired,
+  // list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default ListBlockView;

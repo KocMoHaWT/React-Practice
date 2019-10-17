@@ -184,14 +184,11 @@ class Home extends Component {
       }
     }
     const { currentIndex } = this.state;
-    if (currentIndex && currentIndex + 1 === arrayOfNodes.length) {
-      element = 0;
-    }
-    if (currentIndex && currentIndex - 1 === -1) {
-      element = arrayOfNodes.length;
-    }
     if (e.key === 'ArrowDown') {
       element += 1;
+      if (currentIndex && currentIndex + 1 === arrayOfNodes.length) {
+        element = 0;
+      }
       if (itemInFocus) {
         this.setState({ itemInFocus: itemInFocus.classList.remove('picked') });
       }
@@ -204,6 +201,12 @@ class Home extends Component {
 
     if (e.key === 'ArrowUp') {
       element -= 1;
+      if (!currentIndex) {
+        element = arrayOfNodes.length - 1;
+      }
+      if (currentIndex && currentIndex - 1 === -1) {
+        element = arrayOfNodes.length - 1;
+      }
       if (itemInFocus) {
         this.setState({ itemInFocus: itemInFocus.classList.remove('picked') });
       }
@@ -224,28 +227,9 @@ class Home extends Component {
     setTimeout(this.showImage, 2000);
   };
 
-  createList() {
-    const { biography } = this.state;
-    return biography.map((obj) => (
-      // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
-      <li
-        key={obj.id}
-        draggable
-        onDragStart={this.dragStart}
-        onDragOver={this.dragOver}
-        onClick={this.onClick}
-      >
-        {obj.id}
-        . Name :
-        {obj.name}
-        , Living place :
-        {obj.address.city}
-      </li>
-    ));
-  }
 
   render() {
-    const { homePageText, loading } = this.state;
+    const { homePageText, loading, biography } = this.state;
     return (
       <HomeView
         alertImage={this.alertImage}
@@ -257,7 +241,7 @@ class Home extends Component {
         addToList={this.addToList}
         jsSort={this.jsSort}
         selectionSort={this.selectionSort}
-        list={this.createList()}
+        list={biography}
       />
     );
   }

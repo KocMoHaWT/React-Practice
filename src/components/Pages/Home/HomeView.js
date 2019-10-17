@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ContentBlock from '../../../elements/ContentBlock';
-import Loading from '../../../../asserts/images/loading.jpg';
+import ContentBlock from '../../elements/ContentBlock';
+import Loading from '../../../asserts/images/loading.jpg';
 
 import Item from './components/Item';
 
@@ -13,7 +13,10 @@ const HomeView = (props) => {
   } = props;
 
   return (
-    <div className="homePage">
+    <div
+      className="homePage"
+      id="item"
+    >
       <ContentBlock
         className="banner"
         id="banner"
@@ -78,9 +81,8 @@ const HomeView = (props) => {
           addToList={addToList}
           jsSort={jsSort}
           selectionSort={selectionSort}
-        >
-          {list}
-        </ListBlockView>
+          list={list}
+        />
       </ContentBlock>
     </div>
   );
